@@ -116,7 +116,9 @@ GitHub: https://github.com/ChadsCode
 3. Backend server-side logic not included. This is frontend UI/UX only.
 4. Have all code professionally verified before use.
 5. Views are my own.
+6. Android is a trademark of Google LLC. Google Chrome is a trademark of Google LLC. Windows and GitHub are trademarks of Microsoft Corporation. This project is not affiliated with, endorsed by, or sponsored by these organizations.
 
 ---
+
 
 Questions? Open an issue or reach out via LinkedIn: https://www.linkedin.com/in/chadwigington/
