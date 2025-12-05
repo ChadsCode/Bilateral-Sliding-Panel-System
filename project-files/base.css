@@ -1,0 +1,303 @@
+/* base.css - Core styles and variables */
+
+:root {
+  /* Primary Brand Colors */
+  --primary-dark: #13343B;
+  --primary: #21808D;
+  --primary-light: #32B8C6;
+  --primary-alpha: rgba(33, 128, 141, 0.1);
+  
+  /* Accent Colors */
+  --accent: #A84B2F;
+  --accent-hover: #8E3F27;
+  
+  /* Status Colors */
+  --success: #21808D;
+  --warning: #D97638;
+  --danger: #C0152F;
+  --info: #626C71;
+  
+  /* Neutrals */
+  --charcoal: #134252;
+  --steel: #626C71;
+  --silver: #94A3A8;
+  --ash: #E8EAEB;
+  --pearl: #F5F6F7;
+  --pure: #FFFFFF;
+  --background: #FCFCF9;
+  
+  /* Functional */
+  --text-primary: #134252;
+  --text-secondary: #626C71;
+  --text-muted: #94A3A8;
+  --border: rgba(94, 82, 64, 0.12);
+  --surface: #FFFFFF;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(19, 52, 59, 0.04);
+  --shadow-md: 0 4px 6px rgba(19, 52, 59, 0.06);
+  --shadow-lg: 0 10px 20px rgba(19, 52, 59, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Prevent iOS zoom on form inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--background);
+  min-height: 100vh;
+  padding-bottom: 100px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Header */
+.warning-banner {
+  background: linear-gradient(135deg, #FEF3C7 0%, #FEF9E7 100%);
+  border-bottom: 1px solid #F59E0B;
+  padding: 12px 48px 12px 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #92400E;
+  position: relative;
+}
+
+.warning-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #92400E;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+}
+
+.warning-close:hover {
+  background: rgba(146, 64, 14, 0.1);
+}
+
+.consciousness-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 65px;
+  width: 250px;
+  object-fit: contain;
+}
+
+/* Main Container */
+.void-container {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 20px 120px;
+  margin-top: 80px;
+}
+
+.current-tool {
+  text-align: center;
+  max-width: 800px;
+  width: 100%;
+}
+
+.tool-title {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+/* Input Area */
+.thought-input {
+  width: 100%;
+  min-height: 120px;
+  max-height: 400px;
+  font-size: 18px;
+  line-height: 1.8;
+  border: 2px solid var(--border);
+  outline: none;
+  resize: none;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: 8px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.thought-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-alpha);
+}
+
+.thought-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Action Buttons */
+.input-actions {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+  justify-content: center;
+}
+
+.action-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  background: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.action-link:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: var(--primary-alpha);
+}
+
+.action-link.primary {
+  color: var(--pure);
+  background: var(--primary);
+  border-color: var(--primary);
+  padding: 8px 24px;
+}
+
+.action-link.primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+}
+
+.action-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Notifications */
+.notification {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-radius: 6px;
+  box-shadow: var(--shadow-lg);
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s;
+  z-index: 300;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notification-success {
+  border-left: 4px solid var(--success);
+  color: var(--success);
+}
+
+.notification-warning {
+  border-left: 4px solid var(--warning);
+  color: var(--warning);
+}
+
+.notification-error {
+  border-left: 4px solid var(--danger);
+  color: var(--danger);
+}
+
+.notification-info {
+  border-left: 4px solid var(--info);
+  color: var(--info);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .consciousness-header {
+    height: 70px;
+    padding: 0 16px;
+  }
+  
+  .logo img {
+    height: 50px;
+    width: 192px;
+  }
+  
+  .void-container {
+    padding: 80px 16px 120px;
+    margin-top: 70px;
+    min-height: calc(100vh - 150px);
+  }
+  
+  .thought-input {
+    font-size: 16px;
+    min-height: 100px;
+    padding: 16px;
+  }
+  
+  .input-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .action-link {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+  
+  .notification {
+    top: 80px;
+    right: 10px;
+    left: 10px;
+  }
+}

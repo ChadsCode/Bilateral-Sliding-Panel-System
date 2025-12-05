@@ -1,0 +1,438 @@
+/* panels-ui.css - Side Panel Components (Toolbox, Analysis, Settings) */
+
+/* Firefox-specific button rendering fix */
+@-moz-document url-prefix() {
+    .btn-executive, .action-link, button {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        will-change: transform;
+    }
+}
+
+/* Header positioning adjustment - NO WARNING BANNER */
+.consciousness-header {
+    top: 0px;
+}
+
+.void-container {
+    margin-top: 80px;
+}
+
+/* Panel Tabs - FIXED POSITIONING FOR ALL BROWSERS */
+.toolbox-tab,
+.analysis-tab,
+.settings-tab {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    color: var(--pure);
+    padding: 12px 6px;
+    cursor: pointer;
+    z-index: 200;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.toolbox-tab {
+    left: 0 !important;
+    border-radius: 0 6px 6px 0;
+    box-shadow: 2px 0 6px var(--shadow-md);
+    margin-left: 0 !important;
+}
+
+.analysis-tab {
+    right: 0 !important;
+    border-radius: 6px 0 0 6px;
+    box-shadow: -2px 0 6px var(--shadow-md);
+    margin-right: 0 !important;
+}
+
+.settings-tab {
+    right: 0 !important;
+    border-radius: 6px 0 0 6px;
+    box-shadow: -2px 0 6px var(--shadow-md);
+    z-index: 201;
+    margin-right: 0 !important;
+    /* Force flush positioning for Edge browser */
+    position: fixed !important;
+    transform: translateY(-50%) translateX(0) !important;
+}
+
+.toolbox-tab:hover,
+.analysis-tab:hover,
+.settings-tab:hover {
+    background: var(--primary-dark);
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Panel Base Styles - FIXED FOR NO GAPS */
+.toolbox-panel,
+.analysis-panel,
+.settings-panel {
+    position: fixed;
+    top: 80px !important;
+    bottom: 48px !important; /* Match footer height exactly */
+    background: var(--surface);
+    z-index: 150;
+    transition: transform 0.3s;
+    overflow: hidden;
+    box-shadow: 0 0 20px var(--shadow-lg);
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.toolbox-panel {
+    left: -320px;
+    width: 320px;
+    border-right: 1px solid var(--border);
+}
+
+.analysis-panel {
+    right: -400px;
+    width: 400px;
+    border-left: 1px solid var(--border);
+}
+
+.settings-panel {
+    right: -450px;
+    width: 450px;
+    border-left: 1px solid var(--border);
+    z-index: 151;
+}
+
+.toolbox-panel.active {
+    transform: translateX(320px);
+}
+
+.analysis-panel.active {
+    transform: translateX(-400px);
+}
+
+.settings-panel.active {
+    transform: translateX(-450px);
+}
+
+.panel-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--pearl);
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.panel-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--charcoal);
+}
+
+.panel-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.panel-close:hover {
+    background: var(--ash);
+    color: var(--text-primary);
+}
+
+/* GREEN SCROLL BARS FOR PANELS ONLY - NOT BROWSER SCROLLBAR */
+/* Chrome, Safari, Edge - Webkit scrollbars ONLY for specific panel elements */
+.toolbox-panel .tools-list::-webkit-scrollbar,
+.settings-panel .settings-content::-webkit-scrollbar {
+    width: 20px;
+}
+
+.toolbox-panel .tools-list::-webkit-scrollbar-track,
+.settings-panel .settings-content::-webkit-scrollbar-track {
+    background: var(--ash);
+    border-radius: 10px;
+}
+
+.toolbox-panel .tools-list::-webkit-scrollbar-thumb,
+.settings-panel .settings-content::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+    border: 3px solid var(--surface);
+    min-height: 40px;
+}
+
+.toolbox-panel .tools-list::-webkit-scrollbar-thumb:hover,
+.settings-panel .settings-content::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Firefox - Standard scrollbar properties ONLY for specific panel elements */
+.toolbox-panel .tools-list,
+.settings-panel .settings-content {
+    scrollbar-width: auto;
+    scrollbar-color: var(--primary) var(--ash);
+}
+
+/* Tools List */
+.tools-list {
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.tool-item {
+    padding: 16px;
+    margin-bottom: 12px;
+    background: var(--pearl);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid transparent;
+}
+
+.tool-item:hover {
+    background: var(--surface);
+    border-color: var(--primary);
+    transform: translateX(4px);
+}
+
+.tool-item.active {
+    background: var(--primary);
+    color: var(--pure);
+    border-color: var(--primary);
+}
+
+.tool-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--surface);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.tool-item.active .tool-icon {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: var(--pure);
+}
+
+.tool-info h3 {
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.tool-info p {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+/* Analysis Panel */
+.analysis-content {
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.analysis-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.analysis-btn {
+    flex: 1;
+    padding: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.analysis-btn:hover {
+    background: var(--pearl);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.analysis-btn.primary {
+    background: var(--primary);
+    color: var(--pure);
+    border-color: var(--primary);
+    width: 100%;
+    margin: 16px 0;
+}
+
+.analysis-btn.primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.analysis-btn.report {
+    width: 100%;
+    margin-top: 24px;
+    background: var(--accent);
+    color: var(--pure);
+    border-color: var(--accent);
+}
+
+.analysis-btn.report:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+}
+
+.analysis-input {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+    outline: none;
+    color: var(--text-primary);
+}
+
+.analysis-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-alpha);
+}
+
+.analysis-results {
+    margin: 20px 0;
+}
+
+.analysis-item {
+    padding: 16px;
+    background: var(--pearl);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+}
+
+.analysis-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.analysis-value {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.sentiment-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.sentiment-positive { background: var(--success); }
+.sentiment-negative { background: var(--danger); }
+.sentiment-neutral { background: var(--warning); }
+
+/* Settings Panel - see settings.css for specific settings content */
+.settings-content {
+    padding: 20px;
+    margin: 0;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* Tab visibility management - PREVENT PANEL TRANSFORMS FROM AFFECTING TABS */
+.toolbox-tab,
+.settings-tab,
+.analysis-tab {
+    transition: all 0.3s, opacity 0.2s;
+    position: fixed !important;
+    transform: translateY(-50%) !important;
+}
+
+/* Ensure tabs stay flush when panels are active */
+.toolbox-panel.active ~ .toolbox-tab {
+    left: 0 !important;
+    transform: translateY(-50%) !important;
+}
+
+.settings-panel.active ~ .settings-tab,
+.analysis-panel.active ~ .analysis-tab {
+    right: 0 !important;
+    transform: translateY(-50%) !important;
+}
+
+/* Hide tabs when panels are active */
+.toolbox-panel.active ~ .toolbox-tab,
+.settings-panel.active ~ .settings-tab,
+.analysis-panel.active ~ .analysis-tab {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .toolbox-panel,
+    .analysis-panel,
+    .settings-panel {
+        width: 85vw;
+        top: 70px !important;
+        bottom: 48px !important; /* Match footer height on mobile too */
+    }
+    
+    .toolbox-panel { left: -85vw; }
+    .analysis-panel,
+    .settings-panel { right: -85vw; }
+    
+    .toolbox-panel.active { transform: translateX(85vw); }
+    .analysis-panel.active,
+    .settings-panel.active { transform: translateX(-85vw); }
+    
+    /* Mobile swipe gestures */
+    .toolbox-panel,
+    .settings-panel,
+    .analysis-panel {
+        touch-action: pan-y;
+    }
+}

@@ -1,0 +1,462 @@
+/* interactive-ui.css - Voice Button, Footer, Sheets, and Notifications - MOBILE FOOTER FIXED */
+
+/* Voice Button */
+.voice-button {
+    position: fixed;
+    bottom: 60px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    color: var(--pure);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(168, 75, 47, 0.3);
+    border: none;
+    z-index: 100;
+    transition: all 0.2s;
+}
+
+.voice-button:hover {
+    transform: scale(1.1);
+    background: var(--accent-hover);
+}
+
+.voice-button.recording {
+    background: var(--danger);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.voice-button.shifted {
+    transform: translateX(-400px);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Footer - Reduced Height */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 -1px 3px var(--shadow-sm);
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: 48px;
+}
+
+.footer-left {
+    font-size: 11px;
+    color: var(--text-secondary);
+    position: absolute;
+    left: 0;
+}
+
+.footer-left a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-left a:hover {
+    color: var(--primary-dark);
+}
+
+.footer-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-secondary);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.trust-icon {
+    width: 14px;
+    height: 14px;
+    color: var(--success);
+    flex-shrink: 0;
+}
+
+.footer-right {
+    display: flex;
+    gap: 16px;
+    font-size: 11px;
+    position: absolute;
+    right: 0;
+}
+
+.footer-right a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-right a:hover {
+    color: var(--primary);
+}
+
+/* Bottom Sheet */
+.bottom-sheet {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    height: calc(100% - 48px);
+    background: var(--surface);
+    z-index: 200;
+    transition: transform 0.3s;
+    box-shadow: 0 -2px 20px var(--shadow-lg);
+}
+
+.bottom-sheet.active {
+    transform: translateY(-100%);
+}
+
+.sheet-header {
+    padding: 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--pearl);
+}
+
+.sheet-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sheet-close {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: var(--text-secondary);
+}
+
+.sheet-close:hover {
+    background: var(--ash);
+}
+
+.sheet-content {
+    padding: 32px;
+    overflow-y: auto;
+    height: calc(100% - 70px);
+}
+
+.sheet-content h2 {
+    margin-bottom: 14px;
+    color: var(--charcoal);
+}
+
+.sheet-content h3 {
+    margin: 20px 0 10px 0;
+    color: var(--charcoal);
+}
+
+.sheet-content p {
+    margin-bottom: 14px;
+    line-height: 1.6;
+}
+
+.sheet-content ul {
+    margin: 0 0 14px 18px;
+}
+
+.sheet-content li {
+    margin-bottom: 6px;
+}
+
+.sheet-content a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.sheet-content a:hover {
+    text-decoration: underline;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 75px;
+    right: 18px;
+    padding: 10px 18px;
+    background: var(--surface);
+    border-radius: 5px;
+    box-shadow: var(--shadow-lg);
+    font-size: 13px;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.3s;
+    z-index: 300;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification-success {
+    border-left: 4px solid var(--success);
+    color: var(--success);
+}
+
+.notification-warning {
+    border-left: 4px solid var(--warning);
+    color: var(--warning);
+}
+
+.notification-error {
+    border-left: 4px solid var(--danger);
+    color: var(--danger);
+}
+
+.notification-info {
+    border-left: 4px solid var(--info);
+    color: var(--info);
+}
+
+/* Loading State */
+.analyzing {
+    position: relative;
+    overflow: hidden;
+}
+
+.analyzing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(33, 128, 141, 0.2), transparent);
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    to { left: 100%; }
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) {
+    .footer {
+        height: auto;
+        min-height: 48px;
+        padding: 10px 18px;
+    }
+    
+    .footer-content {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .footer-left {
+        position: static;
+        order: 1;
+        width: auto;
+    }
+    
+    .footer-center {
+        position: static;
+        transform: none;
+        order: 3;
+        width: 100%;
+        text-align: center;
+        margin-top: 6px;
+    }
+    
+    .footer-right {
+        position: static;
+        order: 2;
+        gap: 14px;
+    }
+}
+
+/* MOBILE FOOTER FIX - Show Chad's name and LinkedIn link */
+@media (max-width: 768px) {
+    /* Voice Button Mobile */
+    .voice-button {
+        bottom: 85px; /* Adjusted for larger mobile footer */
+        right: 16px;
+        width: 44px;
+        height: 44px;
+    }
+    
+    /* Mobile Footer - FIXED to show Chad's info */
+    .footer {
+        height: auto;
+        min-height: 80px; /* Increased height for content */
+        padding: 8px 14px;
+        /* Ensure footer is always visible */
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 0;
+        width: 100%;
+    }
+    
+    /* SHOW Chad's name on mobile - was previously hidden */
+    .footer-left {
+        display: block !important; /* Force display */
+        position: static !important;
+        order: 1;
+        font-size: 10px;
+        text-align: center;
+        margin: 0;
+        width: 100%;
+        /* Ensure text is visible */
+        color: var(--text-secondary) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    .footer-left a {
+        color: var(--primary) !important;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .footer-center {
+        position: static !important;
+        transform: none !important;
+        order: 2;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 9px;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+    
+    .trust-icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .footer-right {
+        position: static !important;
+        order: 3;
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        font-size: 10px;
+        margin-top: 2px;
+        width: 100%;
+    }
+    
+    .footer-right a {
+        padding: 2px 4px;
+        white-space: nowrap;
+    }
+    
+    /* Bottom Sheet Mobile */
+    .sheet-content {
+        padding: 18px;
+    }
+    
+    .sheet-header {
+        padding: 14px;
+    }
+    
+    .sheet-title {
+        font-size: 16px;
+    }
+    
+    /* Notifications Mobile */
+    .notification {
+        top: 65px;
+        right: 10px;
+        left: 10px;
+        font-size: 12px;
+        padding: 8px 14px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 375px) {
+    .footer {
+        min-height: 85px; /* Even more space for smaller screens */
+        padding: 6px 10px;
+    }
+    
+    .footer-left {
+        font-size: 9px !important;
+    }
+    
+    .footer-center {
+        font-size: 8px;
+    }
+    
+    .footer-right {
+        font-size: 9px;
+        gap: 6px;
+    }
+    
+    .footer-right a {
+        padding: 1px 3px;
+    }
+    
+    .voice-button {
+        width: 40px;
+        height: 40px;
+        bottom: 90px; /* Adjusted for larger footer on small screens */
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+    .footer {
+        min-height: 90px;
+    }
+    
+    .footer-right {
+        gap: 4px;
+    }
+    
+    .footer-right a {
+        font-size: 8px;
+        padding: 1px 2px;
+    }
+}
